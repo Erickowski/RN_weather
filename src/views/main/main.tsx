@@ -1,11 +1,11 @@
-import { View } from "react-native";
+import { SafeAreaView } from "react-native";
 
 import { Form } from "@components";
 
 export function Main() {
   return (
-    <View>
+    <SafeAreaView>
       <Form />
-    </View>
+    </SafeAreaView>
   );
 }
