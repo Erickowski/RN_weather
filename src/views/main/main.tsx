@@ -1,11 +1,13 @@
-import { SafeAreaView } from "react-native";
+import { View } from "react-native";
 
 import { Form } from "@components";
 
 export function Main() {
   return (
-    <SafeAreaView>
-      <Form />
-    </SafeAreaView>
+    <View className="flex-1 bg-blue-700 justify-center">
+      <View className="mx-[2.5%]">
+        <Form />
+      </View>
+    </View>
   );
 }

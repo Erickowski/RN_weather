@@ -5,21 +5,31 @@ import { COUNTRIES } from "@types";
 
 export function Form() {
   return (
-    <View className="mt-24">
+    <View>
       <View>
-        <TextInput placeholder="City" className="text-neutral-600" />
+        <TextInput
+          placeholder="Ciudad"
+          className="p-3 h-12 bg-white text-xl mb-5 text-center"
+          placeholderTextColor="#666"
+        />
       </View>
       <View>
-        <Picker>
+        <Picker itemStyle={{ height: 120, backgroundColor: "#FFF" }}>
           <Picker.Item label="-- Selecciona un país --" value="" />
           {COUNTRIES.map((country) => (
-            <Picker.Item label={country.label} value={country.value} />
+            <Picker.Item
+              key={country.value}
+              label={country.label}
+              value={country.value}
+            />
           ))}
         </Picker>
       </View>
       <TouchableWithoutFeedback>
-        <View>
-          <Text>Buscar clima</Text>
+        <View className="mt-12 bg-black p-3 justify-center">
+          <Text className="text-white font-bold uppercase text-center text-lg">
+            Buscar clima
+          </Text>
         </View>
       </TouchableWithoutFeedback>
     </View>
