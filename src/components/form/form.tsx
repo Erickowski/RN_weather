@@ -1,4 +1,4 @@
-import { TextInput, View } from "react-native";
+import { Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 import { COUNTRIES } from "@types";
@@ -17,6 +17,11 @@ export function Form() {
           ))}
         </Picker>
       </View>
+      <TouchableWithoutFeedback>
+        <View>
+          <Text>Buscar clima</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
