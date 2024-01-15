@@ -16,9 +16,7 @@ export function Main() {
   };
 
   const handleShowAlert = () => {
-    Alert.alert("Error", "Ciudad y país no validos", [
-      { text: "Entendido", onPress: cleanWeather },
-    ]);
+    Alert.alert("Error", "Ciudad y país no validos", [{ text: "Entendido" }]);
   };
 
   useEffect(() => {
@@ -26,6 +24,7 @@ export function Main() {
       weather.status === REQUEST_STATUS.success &&
       country.key !== weather.data?.location?.country
     ) {
+      cleanWeather();
       handleShowAlert();
     }
   }, [weather.status]);
@@ -34,10 +33,7 @@ export function Main() {
     <TouchableWithoutFeedback onPress={handleHideKeyboard}>
       <View className="flex-1 bg-blue-700 justify-center">
         <View className="mx-[2.5%]">
-          {weather.status === REQUEST_STATUS.success &&
-          country.key === weather.data?.location?.country ? (
-            <Weather />
-          ) : null}
+          {weather.status === REQUEST_STATUS.success ? <Weather /> : null}
           <Form />
         </View>
       </View>
