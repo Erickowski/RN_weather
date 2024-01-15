@@ -54,13 +54,17 @@ export function Form() {
     ]);
   };
 
+  const handleCountryChange = (_: any, index: number) => {
+    setCountry(COUNTRIES[index - 1]);
+  };
+
   const handleSubmit = () => {
-    if (city.trim() === "" || country.trim() === "") {
+    if (city.trim() === "" || country.value.trim() === "") {
       handleShowAlert();
       return;
     }
 
-    fetchWeather(city, country);
+    fetchWeather(city, country.value);
   };
 
   return (
@@ -76,8 +80,8 @@ export function Form() {
       </View>
       <View>
         <Picker
-          onValueChange={setCountry}
-          selectedValue={country}
+          onValueChange={handleCountryChange}
+          selectedValue={country.value}
           itemStyle={{ height: 120, backgroundColor: "#FFF" }}
         >
           <Picker.Item label="-- Selecciona un país --" value="" />

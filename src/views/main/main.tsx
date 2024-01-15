@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { View, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 
-import { Form } from "@components";
+import { Form, Weather } from "@components";
 import { useWeather, useSearch } from "@store";
 import { REQUEST_STATUS } from "@types";
 
@@ -24,7 +24,7 @@ export function Main() {
   useEffect(() => {
     if (
       weather.status === REQUEST_STATUS.success &&
-      country !== weather.data?.location?.country
+      country.key !== weather.data?.location?.country
     ) {
       handleShowAlert();
     }
@@ -34,6 +34,10 @@ export function Main() {
     <TouchableWithoutFeedback onPress={handleHideKeyboard}>
       <View className="flex-1 bg-blue-700 justify-center">
         <View className="mx-[2.5%]">
+          {weather.status === REQUEST_STATUS.success &&
+          country.key === weather.data?.location?.country ? (
+            <Weather />
+          ) : null}
           <Form />
         </View>
       </View>
