@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import { COUNTRIES } from "@types";
-import { useSearch } from "@store";
+import { useSearch, useWeather } from "@store";
 
 export function Form() {
   const {
@@ -18,6 +18,8 @@ export function Form() {
     setCity,
     setCountry,
   } = useSearch();
+
+  const { fetchWeather } = useWeather();
 
   const buttonAnimation = useMemo(() => {
     return new Animated.Value(1);
@@ -57,6 +59,8 @@ export function Form() {
       handleShowAlert();
       return;
     }
+
+    fetchWeather(city, country);
   };
 
   return (
