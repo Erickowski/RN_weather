@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { View, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 
 import { Form, Weather } from "@components";
@@ -19,6 +19,20 @@ export function Main() {
     Alert.alert("Error", "Ciudad y país no validos", [{ text: "Entendido" }]);
   };
 
+  const BackgroundColor = useMemo(() => {
+    if (weather.status !== REQUEST_STATUS.success) return "bg-blue-700";
+
+    if (weather.data.current.temp_c < 10) {
+      return "bg-blue-300";
+    }
+
+    if (weather.data.current.temp_c >= 10 && weather.data.current.temp_c < 23) {
+      return "bg-blue-700";
+    }
+
+    return "bg-red-600";
+  }, [weather.status]);
+
   useEffect(() => {
     if (
       weather.status === REQUEST_STATUS.success &&
@@ -31,7 +45,7 @@ export function Main() {
 
   return (
     <TouchableWithoutFeedback onPress={handleHideKeyboard}>
-      <View className="flex-1 bg-blue-700 justify-center">
+      <View className={`flex-1 justify-center ${BackgroundColor}`}>
         <View className="mx-[2.5%]">
           <View className="min-h-[150px]">
             {weather.status === REQUEST_STATUS.success ? <Weather /> : null}
