@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Picker } from "@react-native-picker/picker";
 import {
+  Alert,
   Animated,
   Text,
   TextInput,
@@ -45,6 +46,19 @@ export function Form() {
     [buttonAnimation]
   );
 
+  const handleShowAlert = () => {
+    Alert.alert("Error", "Agrega una ciudad y un país para la búsqueda", [
+      { text: "Entendido" },
+    ]);
+  };
+
+  const handleSubmit = () => {
+    if (city.trim() === "" || country.trim() === "") {
+      handleShowAlert();
+      return;
+    }
+  };
+
   return (
     <View>
       <View>
@@ -75,6 +89,7 @@ export function Form() {
       <TouchableWithoutFeedback
         onPressIn={handleInAnimation}
         onPressOut={handleOutAnimation}
+        onPress={handleSubmit}
       >
         <Animated.View
           style={styleAnimation}
