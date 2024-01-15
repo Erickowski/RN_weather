@@ -9,8 +9,15 @@ import {
 } from "react-native";
 
 import { COUNTRIES } from "@types";
+import { useSearch } from "@store";
 
 export function Form() {
+  const {
+    search: { city, country },
+    setCity,
+    setCountry,
+  } = useSearch();
+
   const buttonAnimation = useMemo(() => {
     return new Animated.Value(1);
   }, []);
@@ -45,10 +52,16 @@ export function Form() {
           placeholder="Ciudad"
           className="p-3 h-12 bg-white text-xl mb-5 text-center"
           placeholderTextColor="#666"
+          value={city}
+          onChangeText={setCity}
         />
       </View>
       <View>
-        <Picker itemStyle={{ height: 120, backgroundColor: "#FFF" }}>
+        <Picker
+          onValueChange={setCountry}
+          selectedValue={country}
+          itemStyle={{ height: 120, backgroundColor: "#FFF" }}
+        >
           <Picker.Item label="-- Selecciona un país --" value="" />
           {COUNTRIES.map((country) => (
             <Picker.Item
