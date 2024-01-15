@@ -17,6 +17,7 @@ export function Form() {
     search: { city, country },
     setCity,
     setCountry,
+    cleanCountry,
   } = useSearch();
 
   const { fetchWeather } = useWeather();
@@ -54,7 +55,11 @@ export function Form() {
     ]);
   };
 
-  const handleCountryChange = (_: any, index: number) => {
+  const handleCountryChange = (value: string, index: number) => {
+    if (value.trim() === "") {
+      cleanCountry();
+      return;
+    }
     setCountry(COUNTRIES[index - 1]);
   };
 

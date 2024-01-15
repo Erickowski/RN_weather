@@ -24,8 +24,8 @@ export function Main() {
       weather.status === REQUEST_STATUS.success &&
       country.key !== weather.data?.location?.country
     ) {
-      cleanWeather();
       handleShowAlert();
+      cleanWeather();
     }
   }, [weather.status]);
 
